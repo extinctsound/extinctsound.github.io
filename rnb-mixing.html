@@ -192,6 +192,13 @@ footer small { color: var(--grey); font-size: 14px; }
   .rail .ab { flex-basis: 140px; max-width: 140px; }
 }
 
+
+.stream { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.stream .lbl { color: var(--grey); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-right: 2px; }
+.stream a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 13px; font-weight: 600; color: var(--light); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+.stream a:hover { color: var(--black); background: var(--white); border-color: var(--white); }
+.rail .ab .stream { display: none; }
+
 @media (max-width: 900px) {
   .nav .cta { display: none; }
   .menu-btn { display: grid; }
@@ -445,6 +452,23 @@ footer small { color: var(--grey); font-size: 14px; }
   }
   rail.addEventListener('click', function (e) { var c = e.target.closest('.ab'); if (c) { e.preventDefault(); feature(c); } });
   rail.addEventListener('keydown', function (e) { var c = e.target.closest('.ab'); if (c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); feature(c); } });
+})();
+</script>
+<script>
+(function () {
+  var NAMES = { spotify: 'Spotify', apple: 'Apple Music', youtube: 'YouTube', soundcloud: 'SoundCloud', audiomack: 'Audiomack', tidal: 'Tidal' };
+  document.querySelectorAll('.ab').forEach(function (card) {
+    var links = Object.keys(NAMES).filter(function (k) { return card.dataset[k]; });
+    if (!links.length) return;
+    var box = document.createElement('div'); box.className = 'stream';
+    box.innerHTML = '<span class="lbl">Stream it</span>';
+    links.forEach(function (k) {
+      var a = document.createElement('a'); a.href = card.dataset[k]; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = NAMES[k]; a.setAttribute('aria-label', 'Stream ' + card.querySelector('h3').textContent + ' on ' + NAMES[k]);
+      box.appendChild(a);
+    });
+    var seek = card.querySelector('.seek'); seek.parentNode.insertBefore(box, seek);
+  });
 })();
 </script>
 </body>
