@@ -157,6 +157,41 @@ footer small { color: var(--grey); font-size: 14px; }
 .ghero .btns { justify-content: center; }
 .close-q { text-align: center; color: var(--light); font-size: 17px; margin: 40px auto 0; max-width: 620px; }
 
+
+/* Showcase: one featured before/after, the rest in a scrolling row */
+.showcase { max-width: 980px; margin: 0 auto; }
+.feature-slot .ab { display: grid; grid-template-columns: 1fr 1fr; border-radius: 22px; }
+.feature-slot .ab .art { aspect-ratio: 1 / 1; }
+.feature-slot .ab .body { align-content: center; padding: 34px 34px; gap: 20px; }
+.feature-slot .ab h3 { font-size: clamp(32px, 4.2vw, 46px); line-height: 1.02; font-weight: 800; letter-spacing: -.01em; margin: 6px 0 2px; }
+.feature-slot .toggle { justify-self: start; }
+.feature-slot .ab .meta { font-size: 18px; color: var(--light); }
+.feature-slot .ab .kick { display: block; }
+.feature-slot .pp { width: auto; height: 52px; padding: 0 28px; border-radius: 999px; background: var(--white); color: var(--black); gap: 10px; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; }
+.feature-slot .pp::after { content: "Play"; }
+.feature-slot .pp[aria-label="Pause"]::after { content: "Pause"; }
+.feature-slot .ab .book { display: inline-flex; }
+.ab .kick, .ab .book { display: none; }
+.ab .kick { color: var(--grey); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.ab .book { align-items: center; justify-content: center; height: 52px; padding: 0 24px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); color: var(--white); text-decoration: none; font-weight: 700; font-size: 15px; }
+.feature-ctas { display: flex; gap: 12px; flex-wrap: nowrap; align-items: center; }
+.feature-slot .ctrls { flex-direction: column-reverse; align-items: flex-start; gap: 18px; }
+.row-title { font-size: 20px; margin: 44px 0 16px; }
+.rail { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.rail .ab { flex: 0 0 180px; max-width: 180px; scroll-snap-align: start; cursor: pointer; border-radius: 14px; }
+.rail .ab:hover, .rail .ab:focus-visible { border-color: #555; }
+.rail .ab .art .chip { display: none; }
+.rail .ab .body { padding: 10px 12px 12px; gap: 0; }
+.rail .ab .body > :not(:first-child), .rail .ab .svc, .rail .ab .feature-ctas { display: none; }
+.rail .ab h3 { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rail .ab .meta { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 760px) {
+  .feature-slot .ab { grid-template-columns: 1fr; }
+  .feature-slot .ab .body { padding: 22px 22px 24px; gap: 16px; }
+  .rail .ab { flex-basis: 140px; max-width: 140px; }
+}
+
 @media (max-width: 900px) {
   .nav .cta { display: none; }
   .menu-btn { display: grid; }
@@ -216,46 +251,51 @@ footer small { color: var(--grey); font-size: 14px; }
       <p>Toggle between the rough version and the finished record.</p>
       <div class="genres" aria-label="Browse by genre"><a href="index.html#examples">All</a><a class="on" href="hip-hop-mixing.html">Hip Hop</a><a href="rnb-mixing.html">R&amp;B</a></div>
     </div>
-    <div class="cards">
-      <article class="ab" data-before="audio/hiphop-before.mp3" data-after="audio/hiphop-after.mp3">
-        <div class="art has-img"><img src="img/hiphop-cover.jpg" alt="Big Gudda, 4AM In The City cover art" loading="lazy"><span class="chip">Hip Hop</span></div>
-        <div class="body">
-          <div><h3>4AM In The City</h3><div class="meta">Big Gudda</div><div class="svc">Mix &amp; Master</div></div>
-          <div class="toggle" role="group" aria-label="Version"><button type="button" aria-pressed="true">Before</button><button type="button" aria-pressed="false">After</button></div>
-          <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position" disabled>
-          <div class="status"><span class="cur">0:00</span><span class="dur">Clip coming soon</span></div>
-          <div class="ctrls">
-            <button class="pp" type="button" aria-label="Play" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ico" d="M7 4l13 8-13 8z"/></svg></button>
-            <label class="vol"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg><input type="range" min="0" max="100" value="85" aria-label="Volume"></label>
-          </div>
-        </div>
-      </article>
-      <article class="ab" data-before="audio/diy-before.mp3?v=2" data-after="audio/diy-after.mp3?v=2">
-        <div class="art has-img"><img src="img/diy-cover.jpg" alt="DavoTheWun, DIY" loading="lazy"><span class="chip">Hip Hop</span></div>
-        <div class="body">
-          <div><h3>DIY</h3><div class="meta">DavoTheWun</div><div class="svc">Mix &amp; Master</div></div>
-          <div class="toggle" role="group" aria-label="Version"><button type="button" aria-pressed="true">Before</button><button type="button" aria-pressed="false">After</button></div>
-          <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position" disabled>
-          <div class="status"><span class="cur">0:00</span><span class="dur">Clip coming soon</span></div>
-          <div class="ctrls">
-            <button class="pp" type="button" aria-label="Play" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ico" d="M7 4l13 8-13 8z"/></svg></button>
-            <label class="vol"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg><input type="range" min="0" max="100" value="85" aria-label="Volume"></label>
-          </div>
-        </div>
-      </article>
+    <div class="showcase">
+      <div class="feature-slot">
       <article class="ab" data-before="audio/friesngrease-before.mp3" data-after="audio/friesngrease-after.mp3">
         <div class="art has-img"><img src="img/friesngrease-cover.jpg" alt="Raimon, FRIESNGREASE cover art" loading="lazy"><span class="chip">Hip Hop</span></div>
         <div class="body">
-          <div><h3>FRIESNGREASE</h3><div class="meta">Raimon ft. Guru Ma</div><div class="svc">Mix &amp; Master</div></div>
+          <div><span class="kick">Featured</span><h3>FRIESNGREASE</h3><div class="meta">Raimon ft. Guru Ma</div><div class="svc">Mix &amp; Master</div></div>
           <div class="toggle" role="group" aria-label="Version"><button type="button" aria-pressed="true">Before</button><button type="button" aria-pressed="false">After</button></div>
           <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position" disabled>
           <div class="status"><span class="cur">0:00</span><span class="dur">Clip coming soon</span></div>
           <div class="ctrls">
-            <button class="pp" type="button" aria-label="Play" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ico" d="M7 4l13 8-13 8z"/></svg></button>
+            <div class="feature-ctas"><button class="pp" type="button" aria-label="Play" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ico" d="M7 4l13 8-13 8z"/></svg></button><a class="book" href="https://extinctsound.gumroad.com/l/Mixing">Book Your Mix</a></div>
             <label class="vol"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg><input type="range" min="0" max="100" value="85" aria-label="Volume"></label>
           </div>
         </div>
       </article>
+      </div>
+      <h3 class="row-title">More Hip Hop</h3>
+      <div class="rail">
+      <article class="ab" tabindex="0" role="button" data-before="audio/diy-before.mp3?v=2" data-after="audio/diy-after.mp3?v=2">
+        <div class="art has-img"><img src="img/diy-cover.jpg" alt="DavoTheWun, DIY" loading="lazy"><span class="chip">Hip Hop</span></div>
+        <div class="body">
+          <div><span class="kick">Featured</span><h3>DIY</h3><div class="meta">DavoTheWun</div><div class="svc">Mix &amp; Master</div></div>
+          <div class="toggle" role="group" aria-label="Version"><button type="button" aria-pressed="true">Before</button><button type="button" aria-pressed="false">After</button></div>
+          <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position" disabled>
+          <div class="status"><span class="cur">0:00</span><span class="dur">Clip coming soon</span></div>
+          <div class="ctrls">
+            <div class="feature-ctas"><button class="pp" type="button" aria-label="Play" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ico" d="M7 4l13 8-13 8z"/></svg></button><a class="book" href="https://extinctsound.gumroad.com/l/Mixing">Book Your Mix</a></div>
+            <label class="vol"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg><input type="range" min="0" max="100" value="85" aria-label="Volume"></label>
+          </div>
+        </div>
+      </article>
+      <article class="ab" tabindex="0" role="button" data-before="audio/hiphop-before.mp3" data-after="audio/hiphop-after.mp3">
+        <div class="art has-img"><img src="img/hiphop-cover.jpg" alt="Big Gudda, 4AM In The City cover art" loading="lazy"><span class="chip">Hip Hop</span></div>
+        <div class="body">
+          <div><span class="kick">Featured</span><h3>4AM In The City</h3><div class="meta">Big Gudda</div><div class="svc">Mix &amp; Master</div></div>
+          <div class="toggle" role="group" aria-label="Version"><button type="button" aria-pressed="true">Before</button><button type="button" aria-pressed="false">After</button></div>
+          <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position" disabled>
+          <div class="status"><span class="cur">0:00</span><span class="dur">Clip coming soon</span></div>
+          <div class="ctrls">
+            <div class="feature-ctas"><button class="pp" type="button" aria-label="Play" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ico" d="M7 4l13 8-13 8z"/></svg></button><a class="book" href="https://extinctsound.gumroad.com/l/Mixing">Book Your Mix</a></div>
+            <label class="vol"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg><input type="range" min="0" max="100" value="85" aria-label="Volume"></label>
+          </div>
+        </div>
+      </article>
+      </div>
     </div>
     <p class="close-q">Got a Hip Hop record sitting in a folder? $75 mix &amp; master. What's holding it back?</p>
   </div>
@@ -358,7 +398,7 @@ footer small { color: var(--grey); font-size: 14px; }
     elapsed.textContent = Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0');
   }, 1000);
   function fmt(t) { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); }
-  var players = [];
+  var players = window.esPlayers = [];
   document.querySelectorAll('.ab').forEach(function (card) {
     var srcs = { before: card.dataset.before, after: card.dataset.after };
     var btns = card.querySelectorAll('.toggle button');
@@ -418,6 +458,22 @@ footer small { color: var(--grey); font-size: 14px; }
   nav.querySelectorAll('.mmenu a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
   document.addEventListener('click', function (e) { if (!nav.contains(e.target)) set(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+})();
+</script>
+<script>
+(function () {
+  var slot = document.querySelector('.feature-slot'), rail = document.querySelector('.rail');
+  if (!slot || !rail) return;
+  function feature(card) {
+    var old = slot.querySelector('.ab');
+    (window.esPlayers || []).forEach(function (a) { a.pause(); });
+    rail.insertBefore(old, card);
+    slot.appendChild(card);
+    [old, card].forEach(function (c) { var inRail = c.parentNode === rail; c.tabIndex = inRail ? 0 : -1; if (inRail) c.setAttribute('role', 'button'); else c.removeAttribute('role'); });
+    slot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  rail.addEventListener('click', function (e) { var c = e.target.closest('.ab'); if (c) { e.preventDefault(); feature(c); } });
+  rail.addEventListener('keydown', function (e) { var c = e.target.closest('.ab'); if (c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); feature(c); } });
 })();
 </script>
 </body>
