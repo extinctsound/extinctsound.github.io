@@ -260,7 +260,7 @@ footer small { color: var(--grey); font-size: 14px; }
     </div>
     <div class="showcase">
       <div class="feature-slot">
-      <article class="ab" data-spotify="https://open.spotify.com/track/3oTiKO5irXH8VaYy47WJTZ" data-before="audio/friesngrease-before.mp3" data-after="audio/friesngrease-after.mp3">
+      <article class="ab" data-spotify="https://open.spotify.com/track/3oTiKO5irXH8VaYy47WJTZ" data-songlink="https://song.link/s/3oTiKO5irXH8VaYy47WJTZ" data-before="audio/friesngrease-before.mp3" data-after="audio/friesngrease-after.mp3">
         <div class="art has-img"><img src="img/friesngrease-cover.jpg" alt="Raimon, FRIESNGREASE cover art" loading="lazy"><span class="chip">Hip Hop</span></div>
         <div class="body">
           <div><span class="kick">Featured</span><h3>FRIESNGREASE</h3><div class="meta">Raimon ft. Guru Ma</div><div class="svc">Mix &amp; Master</div></div>
@@ -485,7 +485,7 @@ footer small { color: var(--grey); font-size: 14px; }
 </script>
 <script>
 (function () {
-  var NAMES = { spotify: 'Spotify', apple: 'Apple Music', youtube: 'YouTube', soundcloud: 'SoundCloud', audiomack: 'Audiomack', tidal: 'Tidal' };
+  var NAMES = { spotify: 'Spotify', apple: 'Apple Music', youtube: 'YouTube', soundcloud: 'SoundCloud', audiomack: 'Audiomack', tidal: 'Tidal', songlink: 'Listen everywhere' };
   var FOLLOW = { instagram: 'Instagram', artistSpotify: 'Spotify', artistApple: 'Apple Music' };
   document.querySelectorAll('.ab').forEach(function (card) {
     var map = NAMES, label = 'Stream it', verb = 'Stream ' + card.querySelector('h3').textContent + ' on ';
