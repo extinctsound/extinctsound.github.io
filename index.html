@@ -147,6 +147,15 @@ footer small { color: var(--grey); font-size: 14px; }
 .mmenu a:active, .mmenu a:hover { background: var(--panel-2); color: var(--white); }
 .mmenu a.primary { color: var(--white); }
 
+.genres { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+.genres a { text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-weight: 600; font-size: 14px; color: var(--light); }
+.genres a:hover, .genres a.on { background: var(--white); color: var(--black); border-color: var(--white); }
+.ghero { padding: 90px 0 10px; text-align: center; }
+.ghero h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 14px 0 18px; }
+.ghero .lede { color: var(--light); font-size: 18px; max-width: 620px; margin: 0 auto 28px; }
+.ghero .btns { justify-content: center; }
+.close-q { text-align: center; color: var(--light); font-size: 17px; margin: 40px auto 0; max-width: 620px; }
+
 @media (max-width: 900px) {
   .nav .cta { display: none; }
   .menu-btn { display: grid; }
@@ -217,6 +226,7 @@ footer small { color: var(--grey); font-size: 14px; }
       <div class="kicker">Hear the Difference</div>
       <h2>Before &amp; After</h2>
       <p>Toggle between the rough version and the finished record.</p>
+      <div class="genres" aria-label="Browse by genre"><a class="on" href="#examples">All</a><a href="hip-hop-mixing.html">Hip Hop</a><a href="rnb-mixing.html">R&amp;B</a></div>
     </div>
     <div class="cards">
       <article class="ab" data-before="audio/rnb-before.mp3" data-after="audio/rnb-after.mp3">
@@ -358,7 +368,7 @@ footer small { color: var(--grey); font-size: 14px; }
 (function () {
   var heights = [14,22,34,38,40,44,78,26,88,40,96,18,94,58,84,22,44,46,18,12,14,30,30,42,64,40,20,38,82,100,68,74,72,92,80,66,62,12,26,10];
   var wave = document.getElementById('wave');
-  heights.forEach(function (h, n) {
+  if (wave) heights.forEach(function (h, n) {
     var i = document.createElement('i');
     i.style.height = h + '%';
     i.style.setProperty('--d', (0.45 + ((n * 37) % 50) / 100).toFixed(2) + 's');
@@ -367,7 +377,7 @@ footer small { color: var(--grey); font-size: 14px; }
     wave.appendChild(i);
   });
   var elapsed = document.getElementById('elapsed'), t = 0;
-  setInterval(function () {
+  if (elapsed) setInterval(function () {
     t = (t + 1) % 226;
     elapsed.textContent = Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0');
   }, 1000);
